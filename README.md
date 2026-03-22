@@ -52,7 +52,7 @@ Prusa Buddy Camera (Wi-Fi, RTSP)
 
 ## Hardware
 
-> Using the links below supports this guide at no extra cost to you. You can also support directly at [ko-fi.com/3dzoidberg](https://ko-fi.com/3dzoidberg).
+> Using the Amazon links below supports this guide at no extra cost to you but look around, see what suits you best. I got mine from official pi reseller locally, Aliexpress also sells these cheaper (but the power adaptor should be the official Pi one). You can also support directly at [ko-fi.com/3dzoidberg](https://ko-fi.com/3dzoidberg).
 
 | Component | Recommendation |
 |---|---|
