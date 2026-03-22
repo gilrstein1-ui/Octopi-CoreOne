@@ -26,7 +26,7 @@ This is my first time including affiliate links to Amazon — curious to see wha
 | Guide | For Who | Time |
 |---|---|---|
 | [**Full Setup Guide**](octoprint-core-one-guide.md) | First-time setup — every step explained with context and reasoning | 2–3 hours |
-| [**Quick Guide**](QUICKGUIDE.md) | Experienced users or re-doing a setup after a reflash — condensed steps with all the commands | 30–45 min |
+| [**Quick Guide**](QUICKGUIDE.md) | Just the condensed steps with all the commands | 30–45 min |
 
 Start with the **Full Setup Guide** if this is your first time. Use the **Quick Guide** for subsequent setups or as a reference checklist.
 
