@@ -30,13 +30,13 @@ This guide uses placeholders you need to replace with your actual values:
 *Done on your PC and printer before SSH-ing into the Pi.*
 
 **💻 On your PC:**
-1. **Flash OctoPi 64-bit** via Raspberry Pi Imager → click APP OPTIONS → add custom repo `http://unofficialpi.org/rpi-imager/rpi-imager-octopi.json` → select 64-bit OctoPi. Set hostname, username, password, Wi-Fi, enable SSH.
+1. **Flash OctoPi 64-bit** via Raspberry Pi Imager → click APP OPTIONS → add custom repo `http://unofficialpi.org/rpi-imager/rpi-imager-octopi.json` → select 64-bit OctoPi. Set hostname, username, password, Wi-Fi (can skip if using LAN cable), enable SSH.
 
-**🔌 On your router:**
+**🔌 On your router after booting pi with the flashed card:**
 2. **Assign static IPs** for both the Pi and the Buddy camera. Do this in the router, not on the devices.
 
 **🔧 On the USB cable:**
-3. **Tape the 5V pin** on the USB-A connector before plugging into the printer.
+3. **Tape the 5V pin** on the USB-A connector before plugging into the printer (image included in repo).
 
 **🖨️ On the Core One LCD:**
 4. Settings → RPi Port → **Off** → power cycle the printer.
