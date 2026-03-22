@@ -65,9 +65,9 @@ This setup runs flawlessly on a **Pi 4B** — that's what I use daily. A Pi 5 wo
 
 ## How This Guide Was Built
 
-Every SSH command, service file, and config block was developed interactively with Claude Opus. I planned, tested, verified, and looked up everything extensively before committing each change.
+I have spent many many hours building this up, testing and retrying with different settings. Every SSH command, service file, and config block was developed interactively with Claude Opus. I planned, tested, verified, and looked up everything extensively before committing each change.
 
-The **Troubleshooting** section of the full guide includes a ready-to-paste prompt that equips Claude with complete context about this system architecture — so if you hit an issue, you can get targeted help immediately.
+The **Troubleshooting** section of the full guide includes a ready-to-paste prompt that equips Claude with complete context about this system architecture — so if you hit an issue, you can get targeted help immediately. Feel free to post any issues or questions here I'll be happy to help where I can.
 
 ## Repo Contents
 
