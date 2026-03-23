@@ -86,6 +86,8 @@ The Core One's xBuddy board can be backpowered through USB. If you don't tape ov
 
 **Tape the 5V pin** (pin 1, the leftmost pin when looking at the USB-A connector with the flat side up) with electrical tape or Kapton tape. This blocks power delivery while keeping the data lines intact.
 
+**Plug into the Pi's USB 2.0 port** (black connector), not the USB 3.0 (blue connector). The Pi 4 has 2 of each. USB 2.0 has more than enough bandwidth for serial at 230400 baud and is the safer choice — less electrical noise and avoids the known USB 3.0 interference with 2.4GHz Wi-Fi (which matters if your Buddy camera is on Wi-Fi). USB-C end goes into the Core One.
+
 ![USB-A connector with the 5V pin (rightmost in this orientation) covered with tape](usb-5v-pin-taped.jpg)
 
 ---
@@ -327,6 +329,8 @@ sudo systemctl restart systemd-journald
 OctoPrint writes its own log file outside of journald. Without rotation, `octoprint.log` can grow to hundreds of megabytes during long prints.
 
 **⌨️ Paste into SSH:**
+> ⚠️ **1 placeholder to replace:** `YOUR_USERNAME`
+
 ```bash
 sudo tee /etc/logrotate.d/octoprint > /dev/null << 'ENDLOGROTATE'
 /home/YOUR_USERNAME/.octoprint/logs/octoprint.log {
@@ -391,6 +395,8 @@ go2rtc is the bridge between your camera's RTSP stream and everything that needs
 ### 6.1: Install go2rtc
 
 **⌨️ Paste into SSH:**
+> ⚠️ **1 placeholder to replace:** `YOUR_USERNAME`
+
 ```bash
 cd /home/YOUR_USERNAME
 # For Pi 4/5 (64-bit): use arm64. For Pi 3 or 32-bit OS: use armv6 instead.
@@ -404,6 +410,8 @@ go2rtc is a single static binary — no dependencies, no package manager, no Pyt
 ### 6.2: Configure go2rtc
 
 **⌨️ Paste into SSH:**
+> ⚠️ **2 replacements in this block:** `YOUR_USERNAME`, `YOUR_CAMERA_IP`
+
 ```bash
 cat > /home/YOUR_USERNAME/go2rtc.yaml << 'ENDCONF'
 streams:
@@ -439,6 +447,8 @@ Replace `YOUR_CAMERA_IP` with your camera's static IP. The RTSP path `/live` is 
 ### 6.3: Create go2rtc Service
 
 **⌨️ Paste into SSH:**
+> ⚠️ **6 replacements in this block:** `YOUR_USERNAME`
+
 ```bash
 sudo tee /etc/systemd/system/go2rtc.service > /dev/null << 'ENDSVC'
 [Unit]
@@ -480,6 +490,8 @@ sudo systemctl enable --now go2rtc.service
 This is the single most impactful optimization in the entire camera pipeline: snapshot speed goes from ~5s to ~0.2s. Obico's AI detection depends on fast snapshots — 5-second snapshots mean fewer detection cycles and delayed failure responses.
 
 **⌨️ Paste into SSH:**
+> ⚠️ **2 replacements in this block:** `YOUR_USERNAME`
+
 ```bash
 sudo tee /etc/systemd/system/go2rtc-keepalive.service > /dev/null << 'ENDSVC2'
 [Unit]
@@ -841,6 +853,8 @@ sudo mkdir -p /mnt/winbackup
 ```
 
 **⌨️ Test the connection** (use IP, not hostname — hostname resolution often fails on home networks):
+> ⚠️ **4 replacements in this block:** `YOUR_USERNAME`, `YOUR_WINDOWS_IP`, `YOUR_WIN_USER`
+
 ```bash
 sudo mount -t cifs "//YOUR_WINDOWS_IP/OctoPrintBackups" /mnt/winbackup \
   -o username=YOUR_WIN_USER,password=,vers=3.0,uid=YOUR_USERNAME,gid=YOUR_USERNAME
@@ -857,6 +871,8 @@ Configure the Backup Schedule plugin: **Settings → Backup Schedule → set tim
 This captures everything OctoPrint's plugin doesn't: go2rtc binary and config, systemd services, system configs, and daily logs. It uses a tiered retention strategy (daily/weekly/monthly) and optionally pushes to a Windows SMB share. If the Windows PC is off, it silently fails and tries again tomorrow.
 
 **⌨️ Paste into SSH:**
+> ⚠️ **17 replacements in this block:** `YOUR_USERNAME`, `YOUR_WINDOWS_IP`, `YOUR_WIN_USER`
+
 ```bash
 cat > /home/YOUR_USERNAME/backup.sh << 'ENDSCRIPT'
 #!/bin/bash
@@ -960,6 +976,8 @@ chmod +x /home/YOUR_USERNAME/backup.sh
 ### 12.4: Schedule with Cron
 
 **⌨️ Paste into SSH** (use the sudo version if pushing to Windows):
+> ⚠️ **2 replacements in this block:** `YOUR_USERNAME`
+
 ```bash
 # If using the Windows push (requires sudo for mount):
 sudo bash -c '(crontab -l 2>/dev/null; echo "30 3 * * * /home/YOUR_USERNAME/backup.sh") | crontab -'
@@ -1066,6 +1084,8 @@ sudo reboot
 <details>
 <summary><strong>Buddy Wi-Fi camera validation</strong></summary>
 
+> ⚠️ **1 placeholder to replace:** `YOUR_API_KEY`
+
 ```bash
 echo "=== FULL SYSTEM VALIDATION ==="
 
@@ -1109,6 +1129,8 @@ echo "=== DONE ==="
 
 <details>
 <summary><strong>USB camera validation</strong></summary>
+
+> ⚠️ **1 placeholder to replace:** `YOUR_API_KEY`
 
 ```bash
 echo "=== FULL SYSTEM VALIDATION ==="
@@ -1390,6 +1412,8 @@ sudo systemctl restart octoprint
 ```
 
 **⌨️ Run backup manually** — useful before making system changes:
+> ⚠️ **2 replacements in this block:** `YOUR_USERNAME`
+
 ```bash
 sudo /home/YOUR_USERNAME/backup.sh && tail -1 /home/YOUR_USERNAME/backups/backup.log
 ```
@@ -1418,6 +1442,8 @@ ps aux | grep ffmpeg | grep -v grep
 Useful for timing color changes to when you'll be awake, or starting a print at a specific time:
 
 **⌨️ Paste into SSH:**
+> ⚠️ **1 placeholder to replace:** `YOUR_API_KEY`
+
 ```bash
 sudo apt-get install -y at
 
@@ -1433,6 +1459,8 @@ The file must be loaded (selected) in OctoPrint with the printer connected and r
 ### Logging Tools Available for Debugging
 
 If a print fails and you need to diagnose what happened:
+
+> ⚠️ **1 placeholder to replace:** `YOUR_USERNAME`
 
 ```bash
 # OctoPrint main log (events, errors, plugin messages)

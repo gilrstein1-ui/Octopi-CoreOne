@@ -39,7 +39,7 @@ This guide uses placeholders you need to replace with your actual values:
 3. Tap your printer → Camera tab → tap camera → settings cogwheel → toggle **ON** "RTSP stream on local network." Note the camera IP shown — this is `YOUR_CAMERA_IP`. Without this, go2rtc can't connect to the camera.
 
 **🔧 On the USB cable:**
-4. **Tape the 5V pin** on the USB-A connector before plugging into the printer (image included in repo).
+4. **Tape the 5V pin** on the USB-A connector before plugging into the printer (image included in repo). Plug into the Pi's **USB 2.0 port** (black, not blue) — less noise and avoids Wi-Fi interference. USB-C end into the Core One.
 
 **🖨️ On the Core One LCD:**
 5. Settings → RPi Port → **Off** → power cycle the printer.
@@ -80,6 +80,8 @@ done
 *Moves swap to compressed RAM, reduces filesystem writes, sets up log rotation. Your SD card lasts years instead of months.*
 
 **⌨️ Paste into SSH:**
+> ⚠️ **1 placeholder to replace:** `YOUR_USERNAME`
+
 ```bash
 # ── Disable SD swap (replaced by zram below) ──
 sudo dphys-swapfile swapoff
@@ -184,6 +186,8 @@ fi
 *Bridges the Buddy camera's RTSP stream to MJPEG for OctoPrint + JPEG snapshots for Obico AI. USB camera users already have this handled by webcamd — skip to step 5.*
 
 **⌨️ Paste into SSH:**
+> ⚠️ **11 replacements in this block:** `YOUR_USERNAME`, `YOUR_CAMERA_IP`
+
 ```bash
 # ── Download go2rtc (single binary, no dependencies) ──
 cd /home/YOUR_USERNAME
@@ -421,6 +425,8 @@ curl -s -o /dev/null -w "HTTP %{http_code}, %{size_download}B, %{time_total}s\n"
 *System backup script captures everything OctoPrint's built-in backup misses. Runs nightly via cron. Optionally pushes to a Windows PC.*
 
 **⌨️ Paste into SSH:**
+> ⚠️ **18 replacements in this block:** `YOUR_USERNAME`, `YOUR_WINDOWS_IP`, `YOUR_WIN_USER`
+
 ```bash
 # ── Install SMB client (only needed if pushing to Windows) ──
 sudo apt-get install -y cifs-utils
@@ -521,6 +527,8 @@ sudo reboot
 **⌨️ After reconnecting (~60 seconds), paste the block for your camera type:**
 
 **Buddy camera:**
+> ⚠️ **1 placeholder to replace:** `YOUR_API_KEY`
+
 ```bash
 echo "=== SERVICES ==="
 for svc in octoprint go2rtc go2rtc-keepalive zram-swap haproxy; do
@@ -543,6 +551,8 @@ free -h | grep -E "Mem|Swap"
 ```
 
 **USB camera:**
+> ⚠️ **1 placeholder to replace:** `YOUR_API_KEY`
+
 ```bash
 echo "=== SERVICES ==="
 for svc in octoprint webcamd zram-swap haproxy; do
@@ -597,6 +607,8 @@ sudo systemctl restart octoprint
 ```
 
 **⌨️ Run backup manually** (before making system changes):
+> ⚠️ **2 replacements in this block:** `YOUR_USERNAME`
+
 ```bash
 sudo /home/YOUR_USERNAME/backup.sh && tail -1 /home/YOUR_USERNAME/backups/backup.log
 ```
