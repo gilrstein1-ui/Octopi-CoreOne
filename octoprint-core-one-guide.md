@@ -23,6 +23,8 @@ SSH blocks throughout this guide use these placeholders. Replace them with your 
 
 > **Time-saving tip:** Copy this entire guide into a text editor (Notepad, VS Code, etc.) and use **Find & Replace** to swap all placeholders with your actual values in one go. Then you can copy-paste each SSH block directly without editing every time.
 
+> **⚠️ The #1 cause of setup failures is a missed or mistyped placeholder.** If even one `YOUR_USERNAME` is left unchanged inside a service file, that service silently fails on boot with no obvious error. Treat these like the screw types on the Core One build — get one wrong and things don't work, and you won't immediately know why. Use Find & Replace, and double-check before pasting.
+
 ---
 
 ## What You'll End Up With
@@ -607,15 +609,17 @@ You'll need OctoPrint's global API key for validation scripts and the backup scr
 
 Keep this key handy — several scripts in this guide reference it as `YOUR_API_KEY`.
 
+> **Don't share your API key publicly.** It grants full control of your OctoPrint instance (start/stop prints, change settings, upload files). Keep it in your local copy of this guide only — don't paste it into forum posts, GitHub issues, or public chats.
+
 ---
 
 ## Section 8: Printer Connection
 
-### 8.1: Critical Prerequisite
+### 8.1: Critical Prerequisite (older firmware only)
 
-**🖨️ On the Core One LCD:** **Settings → RPi Port → Off**
+**🖨️ On the Core One LCD:** Check **Settings** for an **RPi Port** option. If it's there, set it to **Off** and power cycle the printer (flip the side switch off and on). If you don't see RPi Port in settings, your firmware has removed it — skip this step.
 
-This **must** be off for stable serial communication with OctoPrint. If left on, the printer's firmware tries to use the USB port for its own Raspberry Pi accessory features, conflicting with OctoPrint's serial communication. Power cycle the printer (flip the side switch off and on) after changing this setting.
+On older firmware, this setting must be off for stable serial communication with OctoPrint. If left on, the printer's firmware tries to use the USB port for its own Raspberry Pi accessory features, conflicting with OctoPrint's serial communication.
 
 ### 8.2: Connect
 
@@ -1193,6 +1197,8 @@ For anything not covered in the specific sections below, the fastest path is to 
 ````
 I need help troubleshooting my OctoPrint + Obico setup for a Prusa Core One 3D printer. Here is the full system context — read it all before responding.
 
+The full setup guide is at https://github.com/gilrstein1-ui/Octopi-CoreOne/ — refer to it for any details not included below.
+
 ## System Architecture
 
 - Raspberry Pi 4B (2GB RAM), running OctoPi 1.1.0 (64-bit, Debian 12 bookworm, aarch64)
@@ -1311,7 +1317,7 @@ There should be at least one ffmpeg process running with `mjpeg` in its command 
 
 ### Serial communication timeouts
 
-Check these in order: verify baudrate is 230400 in OctoPrint's connection settings (not 115200). Confirm RPi Port is **Off** on the printer's LCD. Try a different USB cable (and make sure the 5V pin is taped). 
+Check these in order: verify baudrate is 230400 in OctoPrint's connection settings (not 115200). If your firmware has the RPi Port setting, confirm it's **Off** on the printer's LCD. Try a different USB cable (and make sure the 5V pin is taped). 
 **⌨️ Check for errors:**
 ```bash
 journalctl -u octoprint --since "1 hour ago" | grep -i timeout

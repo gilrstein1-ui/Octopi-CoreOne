@@ -21,6 +21,8 @@ This guide uses placeholders you need to replace with your actual values:
 
 > **💡 Time-saving tip:** Copy this entire guide into a text editor (Notepad, VS Code, etc.) and use **Find & Replace** to swap all placeholders at once. Then you can paste every SSH block directly without editing each time.
 
+> **⚠️ The #1 cause of setup failures is a missed or mistyped placeholder.** If even one `YOUR_USERNAME` is left unchanged inside a service file, that service silently fails on boot. Treat these like the screw types on the Core One build — get one wrong and things don't work. Use Find & Replace, double-check before pasting.
+
 > **💡 PuTTY paste tip:** Paste each SSH block in one quick action (right-click in PuTTY). Don't paste line by line — PuTTY can truncate multi-line blocks, leaving bash stuck at a `>` prompt. If that happens, Ctrl+C and re-paste.
 
 ---
@@ -42,7 +44,7 @@ This guide uses placeholders you need to replace with your actual values:
 4. **Tape the 5V pin** on the USB-A connector before plugging into the printer (image included in repo). Plug into the Pi's **USB 2.0 port** (black, not blue) — less noise and avoids Wi-Fi interference. USB-C end into the Core One.
 
 **🖨️ On the Core One LCD:**
-5. Settings → RPi Port → **Off** → power cycle the printer.
+5. **Older firmware only:** If you see Settings → RPi Port on the LCD, set it to **Off** and power cycle. If the option isn't there, skip this.
 
 ---
 
@@ -65,6 +67,8 @@ echo "=== CAMERA SERVICES ==="
 for svc in webcamd camera-streamer ffmpeg_hls streamer_select; do
   printf "%-20s %s\n" "$svc:" "$(systemctl is-active $svc 2>/dev/null || echo 'not found')"
 done
+echo "=== PI MODEL ==="
+cat /proc/device-tree/model && echo
 ```
 
 **✅ Verify before moving on:**
