@@ -67,7 +67,7 @@ SSH blocks throughout this guide use these placeholders. Replace them with your 
 | Raspberry Pi | 4B, 2GB+ RAM | 2GB works but is tight; 4GB is more comfortable |
 | SD Card | 32GB+ endurance-rated | High-endurance cards are essential — standard cards wear out fast |
 | USB Cable | USB-A to USB-C | **Tape the 5V pin** on the USB-A end to prevent backpowering |
-| Camera | Prusa Buddy Wi-Fi camera | Or any RTSP-capable IP camera |
+| Camera | Prusa Buddy Wi-Fi camera | Or any RTSP-capable IP camera or USB camera |
 | Power Supply | Official Pi 4 PSU (5.1V 3A) | Undervoltage will cause random crashes and SD corruption |
 | Case + Cooling | Any Pi case with passive or active cooling | A case with a fan kit is more cost-effective than buying parts separately |
 | Fan (optional) | 5V GPIO-controlled fan | For on/off temperature control — included in most case kits |

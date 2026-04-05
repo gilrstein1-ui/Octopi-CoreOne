@@ -54,7 +54,7 @@ Prusa Buddy Camera (Wi-Fi, RTSP)
 
 ## Hardware
 
-> Using the Amazon links below supports this guide at no extra cost to you but look around, see what suits you best. I got mine from official pi reseller locally, Aliexpress also sells these cheaper (but the power adaptor should be the official Pi one). Links are from CanaKit — a highly recommended official Pi supplier. If you feel like throwing a tip, much appreciated :) - [ko-fi.com/3dzoidberg](https://ko-fi.com/3dzoidberg).
+> Using the Amazon links below supports this guide at no extra cost to you but look around, see what suits you best. I got mine from official pi reseller locally, Aliexpress also sells these cheaper (but the power adaptor should be the official Pi one). Links are from CanaKit — a highly recommended official Pi supplier.
 
 | Component | Recommendation |
 |---|---|
@@ -62,7 +62,7 @@ Prusa Buddy Camera (Wi-Fi, RTSP)
 | **Power Supply** | [CanaKit 3.5A USB-C for Pi 4](https://amzn.to/4ccWeNT) — included in kits, needed if buying board only |
 | **SD Card** | [SanDisk 64GB High Endurance](https://amzn.to/4rIxiU9) — standard cards wear out fast |
 | **USB Cable** | USB-A to USB-C — **tape the 5V pin** ([see photo](usb-5v-pin-taped.jpg)) |
-| **Camera** | Prusa Buddy Wi-Fi camera (or any RTSP camera) |
+| **Camera** | Prusa Buddy Wi-Fi camera (or any RTSP / USB camera) |
 
 This setup runs flawlessly on a **Pi 4B** — that's what I use daily. A Pi 5 works but is overkill. I recommend buying a kit with case + fan + power supply bundled — more cost-effective than separate parts.
 
@@ -76,7 +76,7 @@ The **Troubleshooting** section of the full guide includes a ready-to-paste prom
 
 ```
 ├── README.md                      ← You are here
-├── octoprint-core-one-guide.md    ← Full setup guide (1,300+ lines)
+├── octoprint-core-one-guide.md    ← Full setup guide (1,500+ lines)
 ├── QUICKGUIDE.md                  ← Quick Guide — condensed steps with commands
 ├── rpi-imager-app-options.jpg     ← Screenshot: RPi Imager APP OPTIONS button
 └── usb-5v-pin-taped.jpg           ← Photo: USB 5V pin taped

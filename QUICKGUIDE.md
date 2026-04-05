@@ -18,7 +18,7 @@ This guide uses placeholders you need to replace with your actual values:
 |---|---|---|
 | `YOUR_USERNAME` | SSH/Pi username you set during flashing | Yes — used everywhere |
 | `YOUR_PI_IP` | Pi's static IP address | Yes |
-| `YOUR_CAMERA_IP` | Buddy camera's static IP | Yes (skip if no camera) |
+| `YOUR_CAMERA_IP` | Buddy camera's static IP | Yes (skip if USB or no camera) |
 | `YOUR_API_KEY` | OctoPrint global API key | Yes (from step 5) |
 | `YOUR_WINDOWS_IP` | Windows PC IP | Optional — backup push only (step 11) |
 | `YOUR_WIN_USER` | Windows username | Optional — backup push only (step 11) |
@@ -33,7 +33,7 @@ This guide uses placeholders you need to replace with your actual values:
 
 ## Hardware
 
-> Links are from CanaKit (official Pi supplier) and other trusted stores. Using them supports this guide at no extra cost to you. Tips welcome at [ko-fi.com/3dzoidberg](https://ko-fi.com/3dzoidberg) :)
+> Links are from CanaKit (official Pi supplier) and other trusted stores. Using them supports this guide at no extra cost to you.
 
 | Component | Link |
 |---|---|
