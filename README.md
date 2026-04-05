@@ -8,6 +8,7 @@ I worked hard to end up with what feels like a very reliable solution which has 
 
 This is my first time including affiliate links to Amazon — curious to see what happens. Feel free to ask any questions and I hope it serves you well. If you want to send a little something my way, [ko-fi.com/3dzoidberg](https://ko-fi.com/3dzoidberg) — thank you in advance :)
 
+Update - Holy Schnitzel! I just received some commision from Amazon - my first time making money from this (or any) hobby - thanks for ordering through the links!   I was just excited to share my guide and hear people are using it, but this is just next level awesome :).  Thank you, I appreciate you! 
 ---
 
 ## What This Gets You
