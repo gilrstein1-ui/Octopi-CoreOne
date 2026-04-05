@@ -70,7 +70,7 @@ SSH blocks throughout this guide use these placeholders. Replace them with your 
 
 ### Recommended Products
 
-**Raspberry Pi:** This setup runs flawlessly on a Pi 4B — it's the board I use daily with OctoPrint, go2rtc, and Obico all running simultaneously without issues. A Pi 5 is overkill for this but works great if you plan to use it for other things too. I recommend buying from the official Raspberry Pi store on Amazon when possible.
+**Raspberry Pi:** This setup runs flawlessly on a Pi 4B — it's the board I use daily with OctoPrint, go2rtc, and Obico all running simultaneously without issues. A Pi 5 is overkill (and consumes much more power) for this but works great if you plan to use it for other things too. I recommend buying from the official Raspberry Pi store when possible.
 
 - [Raspberry Pi 4B — Official Raspberry Pi Store](https://amzn.to/4lPTDxY) — the board by itself, if you already have a case and power supply
 - [Raspberry Pi 4B — CanaKit Starter Kit](https://amzn.to/4rPVxjw) — includes case, power supply, and heatsinks
