@@ -2,7 +2,9 @@
 
 **Condensed version with all steps and commands.** Each section tells you what you're doing and why, then gives you clearly marked blocks to paste or actions to take. For deep explanations, troubleshooting, and an AI-assisted debug prompt, see the [Full Setup Guide](octoprint-core-one-guide.md).
 
-> This setup has been working smoothly for months and catching failed prints — before the filament hit the fan. I hope this is useful to you, enjoy the OctoPi experience, it's great! If you feel like it, consider [buying me a coffee](https://ko-fi.com/3dzoidberg) :), thanks in advance!
+> This setup has been running for months, catching failed prints before the filament hits the fan — and others have followed this guide and got their setups running successfully. I hope this is useful to you, enjoy the OctoPi experience, it's great! If you feel like it, consider [buying me a coffee](https://ko-fi.com/3dzoidberg) :), thanks in advance!
+>
+> **Questions or discussion?** [Reddit thread](https://www.reddit.com/r/prusa3d/comments/1s0puol/octoprint_with_ai_failure_detection_for_core_one/)
 
 > **This doesn't replace Prusa Connect.** Both work side by side. Obico can still watch and notify you when printing from Prusa Connect — it just can't auto-pause (only OctoPrint-initiated prints can be paused by Obico).
 
@@ -316,17 +318,19 @@ done
 2. Set webcam URLs *(Buddy camera only)*:
    - **Stream URL:** `/webcam/api/stream.mjpeg?src=buddy_mjpeg`
    - **Snapshot URL:** `http://127.0.0.1:1984/api/frame.jpeg?src=buddy_mjpeg`
-3. Create printer profile:
 
 > **🔌 USB camera users:** Don't touch webcam URLs — the defaults are already correct. Just verify you see a live feed in OctoPrint's Control tab.
+
+3. Create printer profile:
    - Name: **Prusa Core One** · Model: **COREONE**
    - Build volume: **250 × 220 × 270mm**
    - Heated bed: **Yes** · Heated chamber: **Yes**
    - Nozzle: **0.4mm**
+   - Axes jog speeds (mm/min): X: **21000** · Y: **21000** · Z: **1200** · E: **6000**
 4. **Delete the `_default` profile** (trash icon next to it)
 5. **Copy your API key:** Settings → API → Global API Key → Copy
 
-> This is `YOUR_API_KEY` — you'll need it for validation and backup scripts.
+> This is `YOUR_API_KEY` — you'll need it for validation and backup scripts. **Don't share it publicly** — it grants full control of your OctoPrint instance.
 
 ---
 
@@ -483,19 +487,32 @@ find "${BACKUP_DIR}" -name "weekly-*.tar.gz" -mtime +28 -delete
 LOG_TMP=$(mktemp -d)
 cp /home/YOUR_USERNAME/.octoprint/logs/*.log "${LOG_TMP}/" 2>/dev/null
 journalctl -u octoprint --since "24 hours ago" --no-pager > "${LOG_TMP}/journal-octoprint.log" 2>/dev/null
+journalctl -u go2rtc --since "24 hours ago" --no-pager > "${LOG_TMP}/journal-go2rtc.log" 2>/dev/null
+journalctl -u go2rtc-keepalive --since "24 hours ago" --no-pager > "${LOG_TMP}/journal-keepalive.log" 2>/dev/null
+journalctl -u haproxy --since "24 hours ago" --no-pager > "${LOG_TMP}/journal-haproxy.log" 2>/dev/null
 journalctl --since "24 hours ago" --priority=err --no-pager > "${LOG_TMP}/journal-errors.log" 2>/dev/null
+echo "Date: ${DATE}" > "${LOG_TMP}/system-stats.txt"
+echo "Uptime: $(uptime)" >> "${LOG_TMP}/system-stats.txt"
+free -h >> "${LOG_TMP}/system-stats.txt"
+df -h >> "${LOG_TMP}/system-stats.txt"
+vcgencmd measure_temp >> "${LOG_TMP}/system-stats.txt"
+vcgencmd get_throttled >> "${LOG_TMP}/system-stats.txt"
 tar czf "${BACKUP_DIR}/${LOG_NAME}" -C "${LOG_TMP}" . 2>/dev/null
 rm -rf "${LOG_TMP}"
+[ "$DAY_OF_MONTH" -eq "01" ] && cp "${BACKUP_DIR}/${LOG_NAME}" "${BACKUP_DIR}/monthly-logs-${DATE}.tar.gz"
 find "${BACKUP_DIR}" -name "logs-*.tar.gz" -mtime +7 -delete
 if command -v mount.cifs &>/dev/null; then
   sudo mkdir -p "$WIN_MOUNT"
   if sudo mount -t cifs "$WIN_SHARE" "$WIN_MOUNT" \
     -o username=YOUR_WIN_USER,password=,vers=3.0,uid=YOUR_USERNAME,gid=YOUR_USERNAME 2>/dev/null; then
     mkdir -p "${WIN_MOUNT}/Backups/Daily" "${WIN_MOUNT}/Backups/Weekly" "${WIN_MOUNT}/Backups/Monthly"
-    mkdir -p "${WIN_MOUNT}/Logs/Daily" "${WIN_MOUNT}/Timelapses"
+    mkdir -p "${WIN_MOUNT}/Logs/Daily" "${WIN_MOUNT}/Logs/Monthly"
+    mkdir -p "${WIN_MOUNT}/Timelapses"
     cp "${BACKUP_DIR}/${BACKUP_NAME}" "${WIN_MOUNT}/Backups/Daily/" 2>/dev/null
     [ -f "${BACKUP_DIR}/weekly-${DATE}.tar.gz" ] && cp "${BACKUP_DIR}/weekly-${DATE}.tar.gz" "${WIN_MOUNT}/Backups/Weekly/"
     [ -f "${BACKUP_DIR}/monthly-${DATE}.tar.gz" ] && cp "${BACKUP_DIR}/monthly-${DATE}.tar.gz" "${WIN_MOUNT}/Backups/Monthly/"
+    cp "${BACKUP_DIR}/${LOG_NAME}" "${WIN_MOUNT}/Logs/Daily/" 2>/dev/null
+    [ -f "${BACKUP_DIR}/monthly-logs-${DATE}.tar.gz" ] && cp "${BACKUP_DIR}/monthly-logs-${DATE}.tar.gz" "${WIN_MOUNT}/Logs/Monthly/"
     TIMELAPSE_DIR="/home/YOUR_USERNAME/.octoprint/timelapse"
     if [ -d "$TIMELAPSE_DIR" ] && ls "$TIMELAPSE_DIR"/*.mp4 1>/dev/null 2>&1; then
       for f in "$TIMELAPSE_DIR"/*.mp4; do
@@ -504,6 +521,7 @@ if command -v mount.cifs &>/dev/null; then
       done
     fi
     find "${WIN_MOUNT}/Backups/Daily" -name "*.tar.gz" -mtime +30 -delete 2>/dev/null
+    find "${WIN_MOUNT}/Logs/Daily" -name "*.tar.gz" -mtime +30 -delete 2>/dev/null
     sudo umount "$WIN_MOUNT" 2>/dev/null
     echo "$(date): Push OK" >> "${BACKUP_DIR}/backup.log"
   else

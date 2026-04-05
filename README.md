@@ -4,7 +4,7 @@ A complete, tested, production-ready setup for running OctoPrint with AI failure
 
 ![Raspberry Pi 4B · OctoPi 64-bit · go2rtc · Obico AI](https://img.shields.io/badge/Pi_4B-OctoPi_64--bit-red) ![go2rtc 1.9.9](https://img.shields.io/badge/go2rtc-1.9.9-blue) ![Obico AI](https://img.shields.io/badge/Obico-AI_Detection-green)
 
-I worked hard to end up with what feels like a very reliable solution which has been working for months and has managed to catch and pause failed prints before the filament hits the fan (a little poop joke for you right there). I saw repeating questions on Reddit which I felt this solution might be great for, and since this info was not all readily available online, I decided to close the gap and make this guide.
+I worked hard to end up with what feels like a very reliable solution which has been running for months and catching failed prints before the filament hits the fan (a little poop joke for you right there). Since sharing this guide, others have followed it and got their setups running successfully. I saw repeating questions on Reddit which I felt this solution might be great for, and since this info was not all readily available online, I decided to close the gap and make this guide.
 
 This is my first time including affiliate links to Amazon — curious to see what happens. Feel free to ask any questions and I hope it serves you well. If you want to send a little something my way, [ko-fi.com/3dzoidberg](https://ko-fi.com/3dzoidberg) — thank you in advance :)
 
@@ -70,7 +70,7 @@ This setup runs flawlessly on a **Pi 4B** — that's what I use daily. A Pi 5 wo
 
 I have spent many many hours building this up, testing and retrying with different settings. Every SSH command, service file, and config block was developed interactively with Claude Opus. I planned, tested, verified, and looked up everything extensively before committing each change.
 
-The **Troubleshooting** section of the full guide includes a ready-to-paste prompt that equips Claude with complete context about this system architecture — so if you hit an issue, you can get targeted help immediately. Feel free to post any issues or questions here I'll be happy to help where I can.
+The **Troubleshooting** section of the full guide includes a ready-to-paste prompt that equips Claude with complete context about this system architecture — so if you hit an issue, you can get targeted help immediately. Feel free to post any issues or questions on the [Reddit thread](https://www.reddit.com/r/prusa3d/comments/1s0puol/octoprint_with_ai_failure_detection_for_core_one/) or here — I'll be happy to help where I can.
 
 ## Repo Contents
 

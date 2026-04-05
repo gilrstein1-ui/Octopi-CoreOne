@@ -5,6 +5,8 @@
 *A step-by-step guide to building a fully monitored, remotely accessible, production-ready print server for the Prusa Core One. Every step includes context on what it does and why it matters.*
 
 > **How this guide was built:** This entire setup — every SSH command, service file, config block, and troubleshooting fix — was developed interactively with Claude Opus. I planned, tested, verified, and looked up everything extensively before committing each change. If you run into issues not covered here, see the **Troubleshooting with AI Assistance** section below — it includes a ready-to-paste prompt that equips Claude with full context about this system.
+>
+> **Questions or discussion?** [Reddit thread](https://www.reddit.com/r/prusa3d/comments/1s0puol/octoprint_with_ai_failure_detection_for_core_one/)
 
 ---
 
