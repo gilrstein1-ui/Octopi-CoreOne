@@ -4,6 +4,8 @@
 
 > This setup has been working smoothly for months and catching failed prints — before the filament hit the fan. I hope this is useful to you, enjoy the OctoPi experience, it's great! If you feel like it, consider [buying me a coffee](https://ko-fi.com/3dzoidberg) :), thanks in advance!
 
+> **This doesn't replace Prusa Connect.** Both work side by side. Obico can still watch and notify you when printing from Prusa Connect — it just can't auto-pause (only OctoPrint-initiated prints can be paused by Obico).
+
 ---
 
 ### Before You Begin — Placeholders
@@ -24,6 +26,21 @@ This guide uses placeholders you need to replace with your actual values:
 > **⚠️ The #1 cause of setup failures is a missed or mistyped placeholder.** If even one `YOUR_USERNAME` is left unchanged inside a service file, that service silently fails on boot. Treat these like the screw types on the Core One build — get one wrong and things don't work. Use Find & Replace, double-check before pasting.
 
 > **💡 PuTTY paste tip:** Paste each SSH block in one quick action (right-click in PuTTY). Don't paste line by line — PuTTY can truncate multi-line blocks, leaving bash stuck at a `>` prompt. If that happens, Ctrl+C and re-paste.
+
+---
+
+## Hardware
+
+> Links are from CanaKit (official Pi supplier) and other trusted stores. Using them supports this guide at no extra cost to you. Tips welcome at [ko-fi.com/3dzoidberg](https://ko-fi.com/3dzoidberg) :)
+
+| Component | Link |
+|---|---|
+| **Raspberry Pi 4B** | [Board only](https://amzn.to/4lPTDxY) · [CanaKit Starter Kit](https://amzn.to/4rPVxjw) (includes case, PSU, heatsinks) |
+| **Raspberry Pi 5** | [CanaKit Kit](https://amzn.to/4bpTH3M) — overkill for this but works |
+| **Power Supply** | [CanaKit 3.5A USB-C for Pi 4](https://amzn.to/4ccWeNT) — needed if buying board only |
+| **SD Card** | [SanDisk 64GB High Endurance](https://amzn.to/4rIxiU9) — standard cards wear out fast |
+| **USB Cable** | USB-A to USB-C — **tape the 5V pin** ([photo](usb-5v-pin-taped.jpg)) |
+| **Camera** | Prusa Buddy Wi-Fi camera (or any RTSP / USB camera) |
 
 ---
 

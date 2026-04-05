@@ -8,7 +8,6 @@ I worked hard to end up with what feels like a very reliable solution which has 
 
 This is my first time including affiliate links to Amazon — curious to see what happens. Feel free to ask any questions and I hope it serves you well. If you want to send a little something my way, [ko-fi.com/3dzoidberg](https://ko-fi.com/3dzoidberg) — thank you in advance :)
 
-Update - Holy Schnitzel! I just received some commision from Amazon - my first time making money from this (or any) hobby - thanks for ordering through the links!   I was just excited to share my guide and hear people are using it, but this is just next level awesome :).  Thank you, I appreciate you! 
 ---
 
 ## What This Gets You
@@ -21,6 +20,8 @@ Update - Holy Schnitzel! I just received some commision from Amazon - my first t
 - **SD card protection** — zram swap, tmpfs logs, reduced writes
 - **Automated tiered backups** with optional push to a Windows PC
 - **Everything auto-starts on boot** — zero manual intervention after power-on
+
+**This doesn't replace Prusa Connect.** Both work side by side. Use OctoPrint when you want AI monitoring with auto-pause, Prusa Connect whenever you prefer. Obico can still watch and send you notifications when printing from Prusa Connect — it just can't auto-pause the print (only OctoPrint-initiated prints can be paused by Obico).
 
 ## Guides
 
@@ -53,11 +54,12 @@ Prusa Buddy Camera (Wi-Fi, RTSP)
 
 ## Hardware
 
-> Using the Amazon links below supports this guide at no extra cost to you but look around, see what suits you best. I got mine from official pi reseller locally, Aliexpress also sells these cheaper (but the power adaptor should be the official Pi one). If you feel like throwing a tip, much appreciated :) - [ko-fi.com/3dzoidberg](https://ko-fi.com/3dzoidberg).
+> Using the Amazon links below supports this guide at no extra cost to you but look around, see what suits you best. I got mine from official pi reseller locally, Aliexpress also sells these cheaper (but the power adaptor should be the official Pi one). Links are from CanaKit — a highly recommended official Pi supplier. If you feel like throwing a tip, much appreciated :) - [ko-fi.com/3dzoidberg](https://ko-fi.com/3dzoidberg).
 
 | Component | Recommendation |
 |---|---|
 | **Raspberry Pi** | [Pi 4B — Official Store](https://amzn.to/4lPTDxY) · [Pi 4B CanaKit](https://amzn.to/4rPVxjw) · [Pi 5 CanaKit](https://amzn.to/4bpTH3M) |
+| **Power Supply** | [CanaKit 3.5A USB-C for Pi 4](https://amzn.to/4ccWeNT) — included in kits, needed if buying board only |
 | **SD Card** | [SanDisk 64GB High Endurance](https://amzn.to/4rIxiU9) — standard cards wear out fast |
 | **USB Cable** | USB-A to USB-C — **tape the 5V pin** ([see photo](usb-5v-pin-taped.jpg)) |
 | **Camera** | Prusa Buddy Wi-Fi camera (or any RTSP camera) |

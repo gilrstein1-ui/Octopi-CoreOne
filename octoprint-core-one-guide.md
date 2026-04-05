@@ -52,6 +52,8 @@ SSH blocks throughout this guide use these placeholders. Replace them with your 
 - Delayed print scheduling via the `at` command
 - Bed drop after print completes for easy part removal
 
+> **This doesn't replace Prusa Connect.** Your existing Prusa Connect setup continues to work exactly as before. OctoPrint runs alongside it — you can use either one whenever you want. Print through OctoPrint when you want AI monitoring with auto-pause on failure. Obico can still watch and send you notifications when printing from Prusa Connect — it just can't auto-pause the print, since only OctoPrint controls the serial connection to the printer.
+
 ---
 
 ## Hardware Requirements
@@ -70,11 +72,17 @@ SSH blocks throughout this guide use these placeholders. Replace them with your 
 
 ### Recommended Products
 
-**Raspberry Pi:** This setup runs flawlessly on a Pi 4B — it's the board I use daily with OctoPrint, go2rtc, and Obico all running simultaneously without issues. A Pi 5 is overkill (and consumes much more power) for this but works great if you plan to use it for other things too. I recommend buying from the official Raspberry Pi store when possible.
+The product links below are from CanaKit — a highly recommended official supplier for Raspberry Pi — and other trusted stores.
+
+**Raspberry Pi:** This setup runs flawlessly on a Pi 4B — it's the board I use daily with OctoPrint, go2rtc, and Obico all running simultaneously without issues. A Pi 5 is overkill for this but works great if you plan to use it for other things too.
 
 - [Raspberry Pi 4B — Official Raspberry Pi Store](https://amzn.to/4lPTDxY) — the board by itself, if you already have a case and power supply
 - [Raspberry Pi 4B — CanaKit Starter Kit](https://amzn.to/4rPVxjw) — includes case, power supply, and heatsinks
 - [Raspberry Pi 5 — CanaKit Kit with Cooler, Case & Official Charger](https://amzn.to/4bpTH3M) — if you want the latest Pi with everything included
+
+**Power Supply:** If you're buying the board by itself, you need the correct power supply. Undervoltage causes random crashes and SD corruption that are extremely hard to diagnose.
+
+- [CanaKit 3.5A USB-C Power Supply for Pi 4](https://amzn.to/4ccWeNT) — this is the one you want for the Pi 4. CanaKit also sells a higher-wattage version for the Pi 5 — it works on the Pi 4 too but costs more and is unnecessary.
 
 I also have a cooling fan on my Pi but it's honestly not needed — the Pi 4B runs comfortably in the 50-55°C range with this workload, well below the 80°C throttle point. That said, I found that ordering a kit with a case, fan, and power supply bundled together is more cost-effective than buying them separately. You can also 3D print your own Pi case, but by the time you factor in the fan and power supply you haven't saved much.
 
